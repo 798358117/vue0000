@@ -78,8 +78,6 @@ export default {
         display: flex;
         justify-content: space-between;
     }
-    .content {
-    }
     img {
         margin: 10px 0;
         width: 100%;

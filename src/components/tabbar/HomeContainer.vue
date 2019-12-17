@@ -7,6 +7,7 @@
             <!-- <mt-swipe-item v-for="item in lunbotuList" :key="item.url">
                 <img :src="item.img" alt="">
             </mt-swipe-item>-->
+<<<<<<< HEAD
             <mt-swipe-item>
                 <a href="javascript:;">1111</a>
             </mt-swipe-item>
@@ -19,15 +20,28 @@
             <mt-swipe-item>
                 <a href="javascript:;">4444</a>
             </mt-swipe-item>
+=======
+            <mt-swipe-item>1111</mt-swipe-item>
+            <mt-swipe-item>2222</mt-swipe-item>
+            <mt-swipe-item>3333</mt-swipe-item>
+            <mt-swipe-item>4444</mt-swipe-item>
+>>>>>>> 08ac9c309b449b491dcc3b659f0c05308aedae67
         </mt-swipe>
 
         <!-- 九宫格到 6宫格 的改造工程 -->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+<<<<<<< HEAD
                 <router-link to="/home/newlist">
                     <img src="../../images/menu1.png" alt="">
                     <div class="mui-media-body">新闻资讯</div>
                 </router-link>
+=======
+                <a href="#">
+                    <img src="../../images/menu1.png" alt="">
+                    <div class="mui-media-body">新闻资讯</div>
+                </a>
+>>>>>>> 08ac9c309b449b491dcc3b659f0c05308aedae67
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="#">
@@ -80,7 +94,11 @@ export default {
     methods: {
         getLunbotu() {
             // 获取轮播图数据的方法
+<<<<<<< HEAD
             // this.$http.get("api/getlunbo").then(result => {
+=======
+            // this.$http.get("http://vue.studyit.io/api/getlunbo").then(result => {
+>>>>>>> 08ac9c309b449b491dcc3b659f0c05308aedae67
             //     console.log(result.body);
             // if(result.body.status === 0){
             //     // 成功了
