@@ -1,25 +1,7 @@
 <template>
     <div>
         <!-- 轮播图区域 -->
-        <mt-swipe :auto="4000">
-            <!-- 在组件中，使用v-for的话，一定要使用key -->
-            <!-- 获取不到，先用一般图片顶着 -->
-            <!-- <mt-swipe-item v-for="item in lunbotuList" :key="item.url">
-                <img :src="item.img" alt="">
-            </mt-swipe-item>-->
-            <mt-swipe-item>
-                <a href="javascript:;">1111</a>
-            </mt-swipe-item>
-            <mt-swipe-item>
-                <a href="javascript:;">2222</a>
-            </mt-swipe-item>
-            <mt-swipe-item>
-                <a href="javascript:;">3333</a>
-            </mt-swipe-item>
-            <mt-swipe-item>
-                <a href="javascript:;">4444</a>
-            </mt-swipe-item>
-        </mt-swipe>
+        <swiper :lunbotuList="lunbotuList" :isfull="true"></swiper>
 
         <!-- 九宫格到 6宫格 的改造工程 -->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -30,16 +12,16 @@
                 </router-link>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
+                <router-link to="/home/photoslist">
                     <img src="../../images/menu2.png" alt="">
                     <div class="mui-media-body">图片分享</div>
-                </a>
+                </router-link>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
+                <router-link to="/home/goodslist">
                     <img src="../../images/menu3.png" alt="">
                     <div class="mui-media-body">商品购买</div>
-                </a>
+                </router-link>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="#">
@@ -67,10 +49,12 @@
 
 <script>
 import { Toast } from "mint-ui";
+import swiper from '../subcomponents/swiper.vue'
 
 export default {
     data() {
         return {
+            pageindex: 6,    // 分页的页数--测试
             lunbotuList: [] // 保存轮播图的数组
         };
     },
@@ -90,42 +74,22 @@ export default {
             //     Toast("加载轮播图失败...");
             // }
             //})
+            // 测试
+            this.$http.get('http://localhost:3001/getgoodslist?pageindex=' + this.pageindex ).then(result => {
+                console.log(result)
+                if(result.status === 200) {
+                    this.lunbotuList = result.body.BAI6I0O5wangning;
+                }
+            })
         }
+    },
+    components: {
+        swiper
     }
 };
 </script>
 
 <style lang="scss" scoped>
-.mint-swipe {
-    height: 200px;
-
-    .mint-swipe-item {
-        &:nth-child(1) {
-            background-color: red;
-        }
-        &:nth-child(2) {
-            background-color: blue;
-        }
-        &:nth-child(3) {
-            background-color: cyan;
-        }
-        &:nth-child(4) {
-            background-color: yellow;
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-        }
-
-        .mui-media-body {
-            font-size: 13px;
-        }
-    }
-
-
-    
-}
 
 .mui-grid-view.mui-grid-9 {
         background-color: #fff;
