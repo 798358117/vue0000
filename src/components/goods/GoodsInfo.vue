@@ -1,11 +1,6 @@
 <template>
     <div class="goodsinfo-container">
-
-        <transition 
-            @before-enter="beforeEnter"
-            @enter="enter"
-            @after-enter="afterEnter">
-
+        <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
             <div class="ball" v-show="ballFlag" ref="ball"></div>
         </transition>
 
@@ -24,9 +19,15 @@
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
                     <p class="price">
-                        市场价：<del>￥2399</del>&nbsp;&nbsp;销售价：<span class="now_price">￥2199</span>
+                        市场价：
+                        <del>￥2399</del>&nbsp;&nbsp;销售价：
+                        <span class="now_price">￥2199</span>
                     </p>
-                    <p>购买数量：<numbox @getcount='getSelectedCount' :max="goodsinfo.stock_quantity"></numbox></p>
+                    <p>
+                        购买数量：
+                        <!-- <numbox @getcount="getSelectedCount" :max="goodsinfo.stock_quantity"></numbox> -->
+                        <numbox @getcount="getSelectedCount" ></numbox>
+                    </p>
                     <p>
                         <mt-button type="primary" size="small">立即购买</mt-button>
                         <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
@@ -45,9 +46,9 @@
             <div class="mui-card-header">商品参数</div>
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
-                   <p>商品货号：</p>
-                   <p>库存情况</p>
-                   <p>上架时间：</p>
+                    <p>商品货号：</p>
+                    <p>库存情况</p>
+                    <p>上架时间：</p>
                 </div>
             </div>
             <div class="mui-card-footer">
@@ -55,7 +56,6 @@
                 <mt-button type="danger" size="large" plain @click="goComment(id)">商品评论</mt-button>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -117,6 +117,15 @@ export default {
         addToShopCar() {
             // 添加到购物车
             this.ballFlag = !this.ballFlag;
+            //  { id: 商品的id, count: 要购买的数量, price: 商品的单价,  selected: false }
+            var goodsinfo = { 
+                id: this.id, 
+                count: this.selectedCount, 
+                // price: this.goodsinfo.sell_price, 
+                selected: true
+            }
+            // 调用 store 中的 mutations 来讲商品加入购物车
+            this.$store.commit("addToCar", goodsinfo);
         },
         beforeEnter(el) {
             el.style.transform = "translate(0, 0)";
